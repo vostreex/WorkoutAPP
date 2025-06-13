@@ -12,8 +12,8 @@ class DatabaseInit(private val exerciseDao: ExerciseDAO) {
             val exercises = exerciseDao.getALL().first()
             if (exercises.isEmpty()) {
                 val builtInExercises = listOf(
-                    ExerciseEntity(name = "Жим лежа", muscleGroup = "Грудь", gifURL = "assets://bench_press.gif"),
-                    ExerciseEntity(name = "Приседания", muscleGroup = "Ноги", gifURL = "assets://squats.gif"),
+                    ExerciseEntity(name = "Жим лежа", muscleGroup = "Грудь", gifURL = "https://media.tenor.com/kpJH4zjuPF8AAAAM/supino.gif"),
+                    ExerciseEntity(name = "Приседания", muscleGroup = "Ноги", gifURL = "https://instructorpro.ru/wp-content/uploads/2023/06/Приседания-сумо-Выполнение.gif   "),
                 )
                 exerciseDao.insertExercises(builtInExercises)
             }

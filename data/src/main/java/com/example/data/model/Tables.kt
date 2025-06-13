@@ -28,7 +28,6 @@ fun ExerciseEntity.toDomain() = Exercise(
 )
 
 fun Exercise.toEntity() = ExerciseEntity(
-    id = id,
     name = name,
     muscleGroup = muscleGroup,
     gifURL = gifURL

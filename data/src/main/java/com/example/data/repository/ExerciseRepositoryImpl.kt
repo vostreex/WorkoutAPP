@@ -17,6 +17,6 @@ class ExerciseRepositoryImpl(private val exerciseDao: ExerciseDAO) : ExerciseRep
     }
 
     override suspend fun addExercise(exercise: Exercise) {
-        exerciseDao.insertExercise(exercise.toEntity()) // Преобразуем Exercise в ExerciseEntity
+        exerciseDao.insertExercise(exercise.toEntity())
     }
 }

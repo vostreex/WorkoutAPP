@@ -4,11 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.model.Exercise
 import com.example.domain.usecase.ExercisesUseCases
-import com.example.domain.usecase.GetExercises
 import com.example.presentation.States.State
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
@@ -40,6 +38,12 @@ class AllExercisesViewModel(
 
     fun refresh() {
         getAllExercises()
+    }
+
+    fun addExercise(string: String, string1: String, nothing: String?) {
+        viewModelScope.launch {
+            exercisesUseCases.addExercise(string,string1,nothing)
+        }
     }
 
 }
