@@ -14,5 +14,6 @@ val appModule = module {
         ).build()
     }
     single { get<AppDatabase>().exerciseDao() }
-    single { DatabaseInit(get()) }
+    single { get<AppDatabase>().workoutDao() }
+    single { DatabaseInit(get(),get()) }
 }

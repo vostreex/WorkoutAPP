@@ -3,22 +3,22 @@ package com.example.presentation.ViewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.model.Exercise
+import com.example.domain.model.Workout
 import com.example.domain.usecase.ExercisesUseCases
+import com.example.domain.usecase.WorkoutsUseCases
 import com.example.presentation.States.State
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
-class AllExercisesViewModel(
-    private val exercisesUseCases: ExercisesUseCases
+class CreateWorkoutViewModel(
+    private val exercisesUseCases: ExercisesUseCases,
+    private val WorkoutUseCases: WorkoutsUseCases
 ): ViewModel() {
 
     private val _exercisesList = MutableStateFlow<State<List<Exercise>>>(State.Loading)
     val exercisesList: StateFlow<State<List<Exercise>>> = _exercisesList
-
-    private val _exercisesCategoryList = MutableStateFlow<List<String>>(emptyList())
-    val exercisesCategoryList: StateFlow<List<String>> = _exercisesCategoryList
 
     init {
         getAllExercises()
@@ -34,21 +34,16 @@ class AllExercisesViewModel(
                 }
                 .collect {exercises ->
                     _exercisesList.value = State.Success(exercises)
-                    _exercisesCategoryList.value = exercises.map { it.muscleGroup }.distinct().sorted()
                 }
         }
     }
 
-    fun addExercise(string: String, string1: String, nothing: String?,description: String) {
+    fun createWorkout(name: String,exercises: Set<Exercise>){
         viewModelScope.launch {
-            val desc = if (description == "") null else description
-            exercisesUseCases.addExercise(string,string1,nothing,desc)
-        }
-    }
-
-    fun deleteExercise(id: Long){
-        viewModelScope.launch {
-            exercisesUseCases.deleteExercise(id)
+            val idsList = exercises.map {
+                it.id
+            }
+            WorkoutUseCases.createWorkout(Workout(name = name, exercisesIdList = idsList))
         }
     }
 

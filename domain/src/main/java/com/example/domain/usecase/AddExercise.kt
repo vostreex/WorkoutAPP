@@ -6,11 +6,12 @@ import com.example.domain.repository.ExerciseRepository
 class AddExercise(
     private val repository: ExerciseRepository
 ) {
-    suspend operator fun invoke(name: String,muscleGroup: String, image: String?){
+    suspend operator fun invoke(name: String,muscleGroup: String, image: String?,description: String?){
         repository.addExercise(Exercise(
             name = name,
             muscleGroup = muscleGroup,
-            gifURL = image
+            gifURL = image,
+            aboutExercise = description
             )
         )
     }

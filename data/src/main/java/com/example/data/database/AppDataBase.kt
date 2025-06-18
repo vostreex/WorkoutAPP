@@ -11,6 +11,7 @@ import com.example.data.model.WorkoutEntity
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun exerciseDao(): ExerciseDAO
+    abstract fun workoutDao(): WorkoutDAO
 }
 
 

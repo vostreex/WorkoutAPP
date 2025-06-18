@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("org.jetbrains.kotlin.plugin.serialization") version "2.0.20"
 }
 
 android {
@@ -70,5 +71,7 @@ dependencies {
     //Coil
     implementation("io.coil-kt:coil-compose:2.6.0")
     implementation("io.coil-kt:coil-gif:2.6.0")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
 
 }

@@ -19,4 +19,8 @@ class ExerciseRepositoryImpl(private val exerciseDao: ExerciseDAO) : ExerciseRep
     override suspend fun addExercise(exercise: Exercise) {
         exerciseDao.insertExercise(exercise.toEntity())
     }
+
+    override suspend fun deleteExercise(id: Long) {
+        exerciseDao.deleteExercise(id)
+    }
 }
