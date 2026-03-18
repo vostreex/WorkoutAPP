@@ -48,5 +48,3 @@ fun Workout.toEntity() = WorkoutEntity(
     name = name,
     exercisesIdList = exercisesIdList
 )
-
-

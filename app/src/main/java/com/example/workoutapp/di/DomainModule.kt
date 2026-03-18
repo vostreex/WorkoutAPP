@@ -7,6 +7,7 @@ import com.example.domain.usecase.DeleteWorkout
 import com.example.domain.usecase.ExercisesUseCases
 import com.example.domain.usecase.GetExercises
 import com.example.domain.usecase.GetExercisesFromWorkout
+import com.example.domain.usecase.GetWorkout
 import com.example.domain.usecase.GetWorkouts
 import com.example.domain.usecase.WorkoutsUseCases
 import org.koin.dsl.module
@@ -20,5 +21,6 @@ val domainModule = module {
     factory { GetExercisesFromWorkout(get()) }
     factory { CreateWorkout(get()) }
     factory { DeleteWorkout(get()) }
-    factory { WorkoutsUseCases(get(),get(),get(),get()) }
+    factory { GetWorkout(get ()) }
+    factory { WorkoutsUseCases(get(),get(),get(),get(),get()) }
 }

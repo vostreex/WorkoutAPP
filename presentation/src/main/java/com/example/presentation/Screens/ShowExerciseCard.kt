@@ -2,6 +2,7 @@ package com.example.presentation.Screens
 
 import android.R
 import android.text.Layout
+import android.util.Log
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.animateFloatAsState
@@ -54,6 +55,7 @@ import coil.compose.rememberAsyncImagePainter
 import coil.decode.GifDecoder
 import coil.request.ImageRequest
 import coil.size.Size
+import coil.util.CoilUtils.result
 import com.example.domain.model.Exercise
 import java.io.File
 
@@ -251,8 +253,10 @@ fun GifImage(
             }
             .size(Size.ORIGINAL)
             .listener(
-                onError = { _, _ ->
+                onError = { request, result ->
                     hasError.value = true
+                    Log.e("GifImage", "Error loading: ${request.data}", result.throwable)
+                    Log.e("GifImage", "Throwable message: ${result.throwable.message}")
                 }
             )
             .build()

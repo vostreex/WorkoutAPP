@@ -37,4 +37,14 @@ class WorkoutRepositoryImpl(
     override suspend fun deleteWorkOut(id: Long) {
         workoutDAO.deleteWorkout(id)
     }
+
+    override fun getWorkOutById(id: Long): Flow<Workout> {
+        return workoutDAO.getWorkoutById(id).map { entity ->
+            Workout(
+                id = entity.id,
+                name = entity.name,
+                exercisesIdList = entity.exercisesIdList
+            )
+        }
+    }
 }

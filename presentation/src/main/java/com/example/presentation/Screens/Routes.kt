@@ -16,3 +16,8 @@ data class ExerciseInfo(
     val gifURL: String? = null,
     val aboutExercise: String? = null
 )
+
+@Serializable
+data class WorkoutDetailsRoute(
+    val workoutId: Long
+)

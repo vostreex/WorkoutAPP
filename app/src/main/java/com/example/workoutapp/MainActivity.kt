@@ -42,8 +42,11 @@ import com.example.presentation.Screens.ExerciseCard
 import com.example.presentation.Screens.ExerciseInfo
 import com.example.presentation.Screens.ShowExerciseCard
 import com.example.presentation.Screens.TopBar
+import com.example.presentation.Screens.WorkoutDetailsRoute
+import com.example.presentation.Screens.WorkoutDetailsScreen
 import com.example.workoutapp.ui.theme.WorkoutAPPTheme
 import kotlinx.coroutines.launch
+import org.koin.androidx.compose.koinViewModel
 
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
@@ -108,7 +111,10 @@ class MainActivity : ComponentActivity() {
                                 )
                             }
                             composable<AllWorkoutsScreen> {
-                                AllWorkouts(modifier = Modifier.padding(innerPadding))
+                                AllWorkouts(
+                                    modifier = Modifier.padding(innerPadding),
+                                    navController = navController
+                                    )
                             }
                             composable<ExerciseInfo> { currentBackStackEntry->
                                 val name = currentBackStackEntry.toRoute<ExerciseInfo>().name
@@ -118,6 +124,13 @@ class MainActivity : ComponentActivity() {
                                 ShowExerciseCard(
                                     modifier = Modifier.padding(innerPadding),
                                     exercise = Exercise(name = name, muscleGroup = muscleGroup, aboutExercise = aboutExercise, gifURL = gifURL)
+                                )
+                            }
+                            composable<WorkoutDetailsRoute> { backStackEntry ->
+                                val workoutId = backStackEntry.toRoute<WorkoutDetailsRoute>().workoutId
+                                WorkoutDetailsScreen(
+                                    workoutId = workoutId,
+                                    navController = navController
                                 )
                             }
                         }

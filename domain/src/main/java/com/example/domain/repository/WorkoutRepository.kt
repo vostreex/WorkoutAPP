@@ -9,4 +9,5 @@ interface WorkoutRepository {
     fun getExercises(ids: List<Long>) :  Flow<List<Exercise>>
     suspend fun createWorkOut(workout: Workout)
     suspend fun deleteWorkOut(id: Long)
+    fun getWorkOutById(id: Long): Flow<Workout>
 }

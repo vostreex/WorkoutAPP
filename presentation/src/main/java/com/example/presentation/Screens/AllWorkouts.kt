@@ -62,6 +62,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.domain.model.Exercise
 import com.example.domain.model.Workout
 import com.example.presentation.States.State
@@ -73,7 +74,8 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun AllWorkouts(
     modifier: Modifier = Modifier,
-    viewModel: AllWorkoutsViewModel = koinViewModel<AllWorkoutsViewModel>()
+    viewModel: AllWorkoutsViewModel = koinViewModel<AllWorkoutsViewModel>(),
+    navController: NavController
 ){
     val workoutsList = viewModel.workoutsList.collectAsState().value
     val exercises = viewModel.exerciseForWorkout.collectAsState().value
@@ -125,7 +127,9 @@ fun AllWorkouts(
                             selectedItem = -1
                         },
                         onShowCardClick = {
-
+                            navController.navigate(
+                                WorkoutDetailsRoute(it.id)
+                            )
                         }
                     )
                 }
